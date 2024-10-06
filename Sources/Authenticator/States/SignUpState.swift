@@ -102,19 +102,19 @@ public class SignUpState: AuthenticatorBaseState {
         }
         
         // Validate username attribute is present and required
-        let usernameAttribute = cognitoConfiguration.usernameAttribute
-        if existingFields.contains(usernameAttribute.asSignUpAttribute),
-           let usernameField = inputs.first(where: { $0.field.attributeType == usernameAttribute.asSignUpAttribute }) {
-            if !usernameField.isRequired {
-                log.verbose("Marking username attribute \(usernameAttribute.rawValue) as required")
-                usernameField.isRequired = true
-            }
-        } else {
-            // Add username field at the top
-            log.verbose("Adding missing username attribute \(usernameAttribute.rawValue) to Sign Up Fields")
-            inputs.insert(.init(field: .signUpField(from: usernameAttribute)), at: 0)
-            existingFields.insert(usernameAttribute.asSignUpAttribute)
-        }
+        // let usernameAttribute = cognitoConfiguration.usernameAttribute
+        // if existingFields.contains(usernameAttribute.asSignUpAttribute),
+        //    let usernameField = inputs.first(where: { $0.field.attributeType == usernameAttribute.asSignUpAttribute }) {
+        //     if !usernameField.isRequired {
+        //         log.verbose("Marking username attribute \(usernameAttribute.rawValue) as required")
+        //         usernameField.isRequired = true
+        //     }
+        // } else {
+        //     // Add username field at the top
+        //     log.verbose("Adding missing username attribute \(usernameAttribute.rawValue) to Sign Up Fields")
+        //     inputs.insert(.init(field: .signUpField(from: usernameAttribute)), at: 0)
+        //     existingFields.insert(usernameAttribute.asSignUpAttribute)
+        // }
         
         // Validate all required sign up attributes are present
         for attribute in cognitoConfiguration.signupAttributes {
